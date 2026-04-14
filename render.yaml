@@ -46,8 +46,5 @@ services:
       - key: DB_POSTGRESDB_PASSWORD
         sync: false
 
-      - key: DB_POSTGRESDB_SSL_ENABLED
-        value: true
-
-      - key: DB_POSTGRESDB_POOL_SIZE
-        value: 2
+      - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
+        value: false
