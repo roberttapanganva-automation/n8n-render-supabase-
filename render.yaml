@@ -5,40 +5,58 @@ services:
     runtime: image
 
     image:
-      url: docker.io/n8nio/n8n:2.25.4
+      url: docker.n8n.io/n8nio/n8n:2.25.4
 
     healthCheckPath: /healthz/readiness
 
     envVars:
       - key: PORT
-        value: 5678
+        value: "5678"
 
       - key: N8N_PORT
-        value: 5678
+        value: "5678"
+
+      - key: N8N_LISTEN_ADDRESS
+        value: "0.0.0.0"
 
       - key: N8N_PROTOCOL
-        value: https
+        value: "https"
+
+      - key: N8N_HOST
+        value: "robert-n8n.onrender.com"
+
+      - key: WEBHOOK_URL
+        value: "https://robert-n8n.onrender.com/"
+
+      - key: N8N_EDITOR_BASE_URL
+        value: "https://robert-n8n.onrender.com/"
 
       - key: N8N_PROXY_HOPS
-        value: 1
+        value: "1"
 
       - key: GENERIC_TIMEZONE
-        value: Asia/Manila
+        value: "Asia/Manila"
 
+      - key: TZ
+        value: "Asia/Manila"
+
+      # IMPORTANT:
+      # Set this manually in Render Environment.
+      # Do not regenerate this after credentials already exist.
       - key: N8N_ENCRYPTION_KEY
-        generateValue: true
+        sync: false
 
       - key: DB_TYPE
-        value: postgresdb
+        value: "postgresdb"
 
       - key: DB_POSTGRESDB_HOST
         sync: false
 
       - key: DB_POSTGRESDB_PORT
-        value: 5432
+        value: "5432"
 
       - key: DB_POSTGRESDB_DATABASE
-        value: postgres
+        value: "postgres"
 
       - key: DB_POSTGRESDB_USER
         sync: false
@@ -46,5 +64,20 @@ services:
       - key: DB_POSTGRESDB_PASSWORD
         sync: false
 
+      - key: DB_POSTGRESDB_SCHEMA
+        value: "public"
+
+      - key: DB_POSTGRESDB_SSL_ENABLED
+        value: "true"
+
       - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
-        value: false
+        value: "false"
+
+      - key: DB_POSTGRESDB_CONNECTION_TIMEOUT
+        value: "60000"
+
+      - key: DB_POSTGRESDB_IDLE_CONNECTION_TIMEOUT
+        value: "60000"
+
+      - key: DB_POSTGRESDB_POOL_SIZE
+        value: "1"
