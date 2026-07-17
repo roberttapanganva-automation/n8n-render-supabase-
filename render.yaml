@@ -73,11 +73,16 @@ services:
       - key: DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED
         value: "false"
 
-      - key: DB_POSTGRESDB_CONNECTION_TIMEOUT
-        value: "60000"
-
-      - key: DB_POSTGRESDB_IDLE_CONNECTION_TIMEOUT
-        value: "60000"
-
       - key: DB_POSTGRESDB_POOL_SIZE
+        value: "2"
+
+              # Give the main n8n process more JavaScript heap
+      - key: NODE_OPTIONS
+        value: "--max-old-space-size=384"
+
+      # Keep task-runner memory usage low on Render Free
+      - key: N8N_RUNNERS_MAX_CONCURRENCY
         value: "1"
+
+      - key: N8N_RUNNERS_MAX_OLD_SPACE_SIZE
+        value: "128"
